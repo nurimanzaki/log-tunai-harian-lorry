@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#0f4c3a" />
+  <meta name="description" content="Driver Cash Expense Tracker — Submit your daily cash expenses securely." />
+  <title>CashTrack — Driver Expense Form</title>
+
+  <!-- Google Fonts: Syne (display) + DM Sans (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════
+       TOAST NOTIFICATIONS
+  ═══════════════════════════════════════════════ -->
+  <div id="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- ═══════════════════════════════════════════════
+       HEADER
+  ═══════════════════════════════════════════════ -->
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="header-logo">
+        <span class="logo-icon" aria-hidden="true">🌾</span>
+        <div class="logo-text">
+          <span class="logo-title">CashTrack</span>
+          <span class="logo-sub">Sistem Perbelanjaan Tunai</span>
+        </div>
+      </div>
+      <!-- Draft indicator badge -->
+      <div id="draft-badge" class="draft-badge hidden" title="Draf tersimpan secara tempatan">
+        <span class="draft-dot"></span> Draf
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════════
+       MAIN FORM WRAPPER
+  ═══════════════════════════════════════════════ -->
+  <main class="main-wrapper" id="main-content">
+
+    <!-- ── SECTION 1: TRIP DETAILS ────────────────── -->
+    <section class="card" id="section-trip">
+      <div class="card-header">
+        <span class="card-icon" aria-hidden="true">🚛</span>
+        <div>
+          <h2 class="card-title">Maklumat Trip</h2>
+          <p class="card-subtitle">Isi butiran perjalanan anda</p>
+        </div>
+      </div>
+
+      <div class="form-grid">
+
+        <!-- Driver Name -->
+        <div class="field-group">
+          <label for="driver-name" class="field-label">
+            Nama Pemandu <span class="required-star" aria-label="wajib">*</span>
+          </label>
+          <div class="select-wrapper">
+<select id="driver-name" name="driverName" required aria-required="true">
+  <option value="" disabled selected>-- Pilih Pemandu --</option>
+  <option value="Faizal Soberi">Faizal Soberi</option>
+  <option value="Sarizal Johari">Sarizal Johari</option>
+  <option value="Fadli Tasu">Fadli Tasu</option>
+  <option value="Amirul Asyraf">Amirul Asyraf</option>
+</select>
+            <span class="select-arrow" aria-hidden="true">▾</span>
+          </div>
+          <span class="field-error" id="err-driver" role="alert"></span>
+        </div>
+
+        <!-- Date -->
+        <div class="field-group">
+          <label for="trip-date" class="field-label">
+            Tarikh <span class="required-star" aria-label="wajib">*</span>
+          </label>
+          <input
+            type="date"
+            id="trip-date"
+            name="tripDate"
+            required
+            aria-required="true"
+          />
+          <span class="field-error" id="err-date" role="alert"></span>
+        </div>
+
+        <!-- Kilang -->
+        <div class="field-group">
+          <label for="kilang" class="field-label">
+            Kilang <span class="required-star" aria-label="wajib">*</span>
+          </label>
+          <div class="select-wrapper">
+<select id="kilang" name="kilang" required aria-required="true">
+  <option value="" disabled selected>-- Pilih Kilang --</option>
+  <option value="Bismi_Farm 01_Kg Barokhas">Bismi_Farm 01_Kg Barokhas</option>
+  <option value="Bismi_Farm 02_Kg Lamdin">Bismi_Farm 02_Kg Lamdin</option>
+  <option value="Bismi_Farm 03_Kg Rambutan">Bismi_Farm 03_Kg Rambutan</option>
+  <option value="Bismi_Farm 07_Kg Tok Nak">Bismi_Farm 07_Kg Tok Nak</option>
+  <option value="Bismi_Farm 08_Kg Pong Utara">Bismi_Farm 08_Kg Pong Utara</option>
+  <option value="Bismi_Farm 09_Kg Pong Selatan">Bismi_Farm 09_Kg Pong Selatan</option>
+  <option value="Bismi_Farm 10_Kg Wan Tepus">Bismi_Farm 10_Kg Wan Tepus</option>
+  <option value="Bismi_Farm 12_Kg Durian">Bismi_Farm 12_Kg Durian</option>
+  <option value="Bismi_Farm 15_Kg Nami">Bismi_Farm 15_Kg Nami</option>
+  <option value="Bismi_Farm A_Kg Chang Deng">Bismi_Farm A_Kg Chang Deng</option>
+  <option value="Bismi_Farm B_Kg Lampam">Bismi_Farm B_Kg Lampam</option>
+  <option value="Bismi_Farm BR_Kg Bendang Raja">Bismi_Farm BR_Kg Bendang Raja</option>
+  <option value="Bismi_Farm BTS 1">Bismi_Farm BTS 1</option>
+  <option value="Bismi_Farm BTS 2">Bismi_Farm BTS 2</option>
+  <option value="Bismi_Farm Pak Hassan">Bismi_Farm Pak Hassan</option>
+  <option value="CP_Bukit Payung_Deza Agro">CP_Bukit Payung_Deza Agro</option>
+  <option value="CP_Changlon_Ayam Gemok">CP_Changlon_Ayam Gemok</option>
+  <option value="CP_Kubang Lintah_Asraria">CP_Kubang Lintah_Asraria</option>
+  <option value="CP_Kubang Lintah_Halim Ismail">CP_Kubang Lintah_Halim Ismail</option>
+  <option value="CP_Kubang Lintah_Izham">CP_Kubang Lintah_Izham</option>
+  <option value="CP_Merbok_Famox">CP_Merbok_Famox</option>
+  <option value="CP_Sungai Kap_Ting Agro">CP_Sungai Kap_Ting Agro</option>
+</select>
+            <span class="select-arrow" aria-hidden="true">▾</span>
+          </div>
+          <span class="field-error" id="err-kilang" role="alert"></span>
+        </div>
+
+<div class="field-group">
+  <label for="lori" class="field-label">
+    Lori <span class="required-star">*</span>
+  </label>
+
+  <div class="select-wrapper">
+    <select id="lori" name="lori" required>
+      <option value="" disabled selected>-- Pilih Lori --</option>
+      <option value="PQS754">PQS754</option>
+      <option value="KDL5459">KDL5459</option>
+      <option value="AMT8246">AMT8246</option>
+      <option value="AMA3999">AMA3999</option>
+    </select>
+    <span class="select-arrow">▾</span>
+  </div>
+
+  <span class="field-error" id="err-lori"></span>
+</div>
+
+      </div>
+    </section>
+
+    <!-- ── SECTION 2: CASH SUMMARY ────────────────── -->
+    <section class="card" id="section-cash">
+      <div class="card-header">
+        <span class="card-icon" aria-hidden="true">💵</span>
+        <div>
+          <h2 class="card-title">Ringkasan Tunai</h2>
+          <p class="card-subtitle">Wang yang diterima & tersedia</p>
+        </div>
+      </div>
+
+      <div class="form-grid">
+
+        <!-- Opening Cash -->
+        <div class="field-group">
+          <label for="opening-cash" class="field-label">
+            Wang Awal (Opening Cash) <span class="required-star" aria-label="wajib">*</span>
+          </label>
+          <div class="input-prefix-wrapper">
+            <span class="input-prefix" aria-hidden="true">RM</span>
+            <input
+              type="number"
+              id="opening-cash"
+              name="openingCash"
+              placeholder="0.00"
+              min="0"
+              step="0.01"
+              required
+              aria-required="true"
+            />
+          </div>
+          <span class="field-error" id="err-opening" role="alert"></span>
+        </div>
+
+        <!-- Topup Received -->
+        <div class="field-group">
+          <label for="topup" class="field-label">
+            Topup Diterima
+          </label>
+          <div class="input-prefix-wrapper">
+            <span class="input-prefix" aria-hidden="true">RM</span>
+            <input
+              type="number"
+              id="topup"
+              name="topupReceived"
+              placeholder="0.00"
+              min="0"
+              step="0.01"
+            />
+          </div>
+          <span class="field-error" id="err-topup" role="alert"></span>
+        </div>
+
+        <!-- Available Cash (calculated) -->
+        <div class="field-group full-width">
+          <label class="field-label">Wang Tersedia (Available Cash)</label>
+          <div class="calculated-display" id="available-cash-display" aria-live="polite">
+            <span class="calc-prefix">RM</span>
+            <span class="calc-value" id="available-cash-value">0.00</span>
+            <span class="calc-badge">Auto</span>
+          </div>
+          <!-- Hidden input for form submission -->
+          <input type="hidden" id="available-cash" name="availableCash" />
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── SECTION 3: EXPENSES ────────────────────── -->
+    <section class="card" id="section-expenses">
+      <div class="card-header">
+        <span class="card-icon" aria-hidden="true">🧾</span>
+        <div>
+          <h2 class="card-title">Perbelanjaan</h2>
+          <p class="card-subtitle">Masukkan perbelanjaan yang dibuat</p>
+        </div>
+      </div>
+
+      <div class="form-grid">
+
+        <!-- Upah Naik -->
+        <div class="field-group">
+          <label for="upah-naik" class="field-label">Upah Naik Dedak</label>
+          <div class="input-prefix-wrapper">
+            <span class="input-prefix" aria-hidden="true">RM</span>
+            <input
+              type="number"
+              id="upah-naik"
+              name="upahNaik"
+              placeholder="0.00"
+              min="0"
+              step="0.01"
+              class="expense-input"
+            />
+          </div>
+          <span class="field-error" id="err-upah-naik" role="alert"></span>
+        </div>
+
+        <!-- Upah Turun -->
+        <div class="field-group">
+          <label for="upah-turun" class="field-label">Upah Turun Dedak</label>
+          <div class="input-prefix-wrapper">
+            <span class="input-prefix" aria-hidden="true">RM</span>
+            <input
+              type="number"
+              id="upah-turun"
+              name="upahTurun"
+              placeholder="0.00"
+              min="0"
+              step="0.01"
+              class="expense-input"
+            />
+          </div>
+          <span class="field-error" id="err-upah-turun" role="alert"></span>
+        </div>
+
+        <!-- Upah Forklift -->
+        <div class="field-group">
+          <label for="upah-forklift" class="field-label">Upah Forklift</label>
+          <div class="input-prefix-wrapper">
+            <span class="input-prefix" aria-hidden="true">RM</span>
+            <input
+              type="number"
+              id="upah-forklift"
+              name="upahForklift"
+              placeholder="0.00"
+              min="0"
+              step="0.01"
+              class="expense-input"
+            />
+          </div>
+          <span class="field-error" id="err-upah-forklift" role="alert"></span>
+        </div>
+
+        <!-- Air -->
+        <div class="field-group">
+          <label for="air" class="field-label">Air (Minum)</label>
+          <div class="input-prefix-wrapper">
+            <span class="input-prefix" aria-hidden="true">RM</span>
+            <input
+              type="number"
+              id="air"
+              name="air"
+              placeholder="0.00"
+              min="0"
+              step="0.01"
+              class="expense-input"
+            />
+          </div>
+          <span class="field-error" id="err-air" role="alert"></span>
+        </div>
+
+        <!-- Makan -->
+        <div class="field-group">
+          <label for="makan" class="field-label">Makan</label>
+          <div class="input-prefix-wrapper">
+            <span class="input-prefix" aria-hidden="true">RM</span>
+            <input
+              type="number"
+              id="makan"
+              name="makan"
+              placeholder="0.00"
+              min="0"
+              step="0.01"
+              class="expense-input"
+            />
+          </div>
+          <span class="field-error" id="err-makan" role="alert"></span>
+        </div>
+
+        <!-- Lain-lain -->
+        <div class="field-group full-width">
+          <label for="lain-lain" class="field-label">Lain-lain</label>
+          <div class="input-prefix-wrapper">
+            <span class="input-prefix" aria-hidden="true">RM</span>
+            <input
+              type="number"
+              id="lain-lain"
+              name="lainLain"
+              placeholder="0.00"
+              min="0"
+              step="0.01"
+              class="expense-input"
+            />
+          </div>
+          <span class="field-error" id="err-lain-lain" role="alert"></span>
+        </div>
+
+        <!-- Lain-lain Reason (conditional) -->
+        <div class="field-group full-width" id="lain-lain-reason-group" style="display:none;">
+          <label for="lain-lain-reason" class="field-label">
+            Sebab Lain-lain
+            <span class="required-star" aria-label="wajib">*</span>
+            <span class="field-hint">(Wajib jika ada perbelanjaan lain-lain)</span>
+          </label>
+          <input
+            type="text"
+            id="lain-lain-reason"
+            name="lainLainReason"
+            placeholder="cth: Tol, Parking, Baiki tyre..."
+            maxlength="200"
+            autocomplete="off"
+          />
+          <span class="field-error" id="err-lain-lain-reason" role="alert"></span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── SECTION 4: SUMMARY TOTALS ─────────────── -->
+    <section class="card card-summary" id="section-summary">
+      <div class="card-header">
+        <span class="card-icon" aria-hidden="true">📊</span>
+        <div>
+          <h2 class="card-title">Ringkasan Akhir</h2>
+          <p class="card-subtitle">Pengiraan automatik</p>
+        </div>
+      </div>
+
+      <div class="summary-grid">
+
+        <div class="summary-row">
+          <span class="summary-label">Wang Tersedia</span>
+          <span class="summary-value neutral" id="summary-available" aria-live="polite">RM 0.00</span>
+        </div>
+
+        <div class="summary-row">
+          <span class="summary-label">Jumlah Perbelanjaan</span>
+          <span class="summary-value expense" id="summary-total-exp" aria-live="polite">RM 0.00</span>
+        </div>
+
+        <div class="summary-divider"></div>
+
+        <div class="summary-row summary-closing">
+          <span class="summary-label">Baki Akhir (Closing Balance)</span>
+          <span class="summary-value closing" id="summary-closing" aria-live="polite">RM 0.00</span>
+        </div>
+
+        <!-- Overspend warning -->
+        <div class="overspend-warning hidden" id="overspend-warning" role="alert">
+          ⚠️ Perbelanjaan melebihi wang tersedia! Sila semak semula.
+        </div>
+
+      </div>
+
+      <!-- Hidden inputs for calculated fields (submitted with form) -->
+      <input type="hidden" id="total-expenses" name="totalExpenses" value="0" />
+      <input type="hidden" id="closing-balance" name="closingBalance" value="0" />
+
+    </section>
+
+    <!-- ── SUBMIT AREA ────────────────────────────── -->
+    <div class="submit-area" id="submit-area">
+      <button
+        type="button"
+        id="submit-btn"
+        class="btn-submit"
+        aria-label="Hantar perbelanjaan"
+      >
+        <span class="btn-text">Hantar Perbelanjaan</span>
+        <span class="btn-spinner hidden" aria-hidden="true"></span>
+        <span class="btn-icon" aria-hidden="true">→</span>
+      </button>
+      <p class="submit-note">
+        Data akan disimpan ke Google Sheets secara automatik.
+      </p>
+    </div>
+
+  </main>
+
+  <!-- ═══════════════════════════════════════════════
+       SUCCESS OVERLAY (shown after successful submit)
+  ═══════════════════════════════════════════════ -->
+  <div id="success-overlay" class="success-overlay hidden" role="dialog" aria-modal="true" aria-label="Penghantaran berjaya">
+    <div class="success-card">
+      <div class="success-icon" aria-hidden="true">✅</div>
+      <h2 class="success-title">Berjaya Dihantar!</h2>
+      <p class="success-msg">Perbelanjaan anda telah disimpan dengan jayanya.</p>
+      <div class="success-detail" id="success-detail"></div>
+      <button type="button" id="new-entry-btn" class="btn-new">
+        + Hantar Baru
+      </button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
