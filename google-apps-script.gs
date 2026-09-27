@@ -152,7 +152,7 @@ function validatePayload(p) {
   // Validate driver name against whitelist
   const ALLOWED_DRIVERS = [
     'Faizal Soberi',
-    'Sarizal Johari',
+    'Syahid',
     'Fadli Tasu',
     'Amirul Asyraf'
     ];
@@ -162,7 +162,7 @@ function validatePayload(p) {
 
   // Validate lorries against whitelist
   const ALLOWED_LORRIES = [
-    'PQS754',
+    'VHL9722',
     'KDL5459',
     'AMT8246',  
     'AMA3999'
