@@ -390,7 +390,7 @@ showSuccessOverlay(payload);
 
 setTimeout(() => {
   openWhatsAppSummary(payload);
-}, 1500);
+}, 5000);
     } else {
       throw new Error(response.message || 'Ralat tidak diketahui dari pelayan.');
     }
